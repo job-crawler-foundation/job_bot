@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
 namespace JobBot.Business.Implementations
 {
@@ -19,7 +20,27 @@ namespace JobBot.Business.Implementations
 
         public Task Process(Update hook)
         {
+            switch (hook.Type)
+            {
+                case UpdateType.Message:
+                    break;
+                case UpdateType.CallbackQuery:
+                    _ = new CallbackQueryService().Handle(hook);
+                    break;
+                default:
+                    break;
+            }
             throw new NotImplementedException();
+        }
+
+        public string Match(bool a,bool b)
+        {
+            return (a, b) switch
+            {
+                (true, true) => "aa",
+
+                _ => "zz"
+            };
         }
     }
 }
