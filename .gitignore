@@ -7,3 +7,5 @@
 /src/JobBot/JobBot.API/bin/Debug/netcoreapp3.1
 /src/JobBot/JobBot.API/obj
 /src/JobBot/.vs/JobBot
+/src/JobBot/JobBot.Business/bin/Debug/netcoreapp3.1
+/src/JobBot/JobBot.Business/obj

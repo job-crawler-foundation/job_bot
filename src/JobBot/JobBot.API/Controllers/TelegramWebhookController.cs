@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JobBot.Business.Abstractions;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,28 +15,34 @@ namespace JobBot.API.Controllers
     [Route("[controller]")]
     public class TelegramWebhookController: ControllerBase
     {
+        private readonly ITelegramHookProcessService _telegramResponseService;
+
         private readonly TelegramBotClient _botClient;
 
-        public TelegramWebhookController(TelegramBotClient botClient)
+        public TelegramWebhookController(TelegramBotClient botClient, ITelegramHookProcessService telegramResponseService)
         {
             _botClient = botClient;
+
+            _telegramResponseService = telegramResponseService;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]Update data)
+        public async Task<IActionResult> Post([FromBody]Update hook)
         {
-            var inlineKeyboard = new InlineKeyboardMarkup(new[]
-               {
-                    // first row
-                    new []
-                    {
-                        InlineKeyboardButton.WithCallbackData("Settings", "Settings"),
-                        InlineKeyboardButton.WithCallbackData("About", "About"),
-                    },
-                });
-            await _botClient.SendTextMessageAsync(
-                new ChatId(data.Message.Chat.Id), "hello world",
-                replyMarkup:inlineKeyboard);
+            await _telegramResponseService.Process(hook);
+
+            //var inlineKeyboard = new InlineKeyboardMarkup(new[]
+            //   {
+            //        // first row
+            //        new []
+            //        {
+            //            InlineKeyboardButton.WithCallbackData("Settings", "Settings"),
+            //            InlineKeyboardButton.WithCallbackData("About", "About"),
+            //        },
+            //    });
+            //await _botClient.SendTextMessageAsync(
+            //    new ChatId(data.Message.Chat.Id), "hello world",
+            //    replyMarkup:inlineKeyboard);
             return Ok();
         }
     }

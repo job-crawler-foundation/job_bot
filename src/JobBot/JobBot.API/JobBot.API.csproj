@@ -12,5 +12,9 @@
     <PackageReference Include="Telegram.Bot" Version="15.5.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\JobBot.Business\JobBot.Business.csproj" />
+  </ItemGroup>
+
 
 </Project>
