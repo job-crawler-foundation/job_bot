@@ -25,7 +25,8 @@ namespace JobBot.Business.Implementations
                 case UpdateType.Message:
                     break;
                 case UpdateType.CallbackQuery:
-                    _ = new CallbackQueryService().Handle(hook);
+                    var message = new CallbackQueryService().Handle(hook);
+                    message.Reply(_telegramBotClient, hook);
                     break;
                 default:
                     break;

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JobBot.Business.Abstractions;
+using JobBot.Business.MessageModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,16 +10,17 @@ namespace JobBot.Business.Implementations
 {
     public class CallbackQueryService
     {
-        public async Task Handle(Update hook)
+        public IMessage Handle(Update hook)
         {
             switch (hook.CallbackQuery.Data)
             {
                 case "Settings":
-                    break;
+                    return new SettingsMessage();
                 case "About":
                     break;
 
             }
+            return null;
         }
     }
 }

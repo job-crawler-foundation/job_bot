@@ -4,7 +4,8 @@ using System.Text;
 
 namespace JobBot.Business.MessageModels
 {
-    class AboutMessage
+    public class AboutMessage
     {
+
     }
 }
