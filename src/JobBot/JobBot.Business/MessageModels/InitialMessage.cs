@@ -1,5 +1,6 @@
 ﻿using JobBot.Business.Abstractions;
 using JobBot.Business.Consts;
+using JobBot.Business.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,8 +24,7 @@ namespace JobBot.Business.MessageModels
                 },
             });
             await client.SendTextMessageAsync(
-                new ChatId(
-                    hook.Message.Chat.Id), "Hello it't job scrapper foundation bot",replyMarkup: inlineKeyboard);
+                hook.ChatId(), "Hello it't job scrapper foundation bot", replyMarkup: inlineKeyboard);
         }
     }
 }

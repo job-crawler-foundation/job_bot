@@ -15,8 +15,7 @@ namespace JobBot.Business.Implementations
                 case "Home":
                     return new InitialMessage();
                 case "About":
-                    break;
-
+                    return new AboutMessage();
             }
             return null;
         }
