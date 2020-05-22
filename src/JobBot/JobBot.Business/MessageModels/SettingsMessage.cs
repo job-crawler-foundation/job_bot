@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.ReplyMarkups;
+using JobBot.Business.Helpers;
 
 namespace JobBot.Business.MessageModels
 {
@@ -12,7 +14,20 @@ namespace JobBot.Business.MessageModels
     {
         public async Task Reply(TelegramBotClient client,Update hook)
         {
-            await client.SendTextMessageAsync(new ChatId(hook.CallbackQuery.Message.Chat.Id),"its settings");
+            var inlineKeyboard = new InlineKeyboardMarkup(new[]
+           {
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData("Preferences"),
+                    InlineKeyboardButton.WithCallbackData("Notifications"),
+                    InlineKeyboardButton.WithCallbackData("On/Off")
+                },
+                new[]
+                {
+                       InlineKeyboardButton.WithCallbackData("Home"),
+                }
+            }); ;
+            await client.SendTextMessageAsync(hook.ChatId(),"its settings",replyMarkup: inlineKeyboard);
         }
     }
 }

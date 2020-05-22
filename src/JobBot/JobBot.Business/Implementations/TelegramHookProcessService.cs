@@ -18,30 +18,21 @@ namespace JobBot.Business.Implementations
             _telegramBotClient = telegramBotClient;
         }
 
-        public Task Process(Update hook)
+        public async Task Process(Update hook)
         {
             switch (hook.Type)
             {
                 case UpdateType.Message:
+                    var initMessage = new InitialMessageService().Handle(hook);
+                    await initMessage.Reply(_telegramBotClient, hook);
                     break;
                 case UpdateType.CallbackQuery:
                     var message = new CallbackQueryService().Handle(hook);
-                    message.Reply(_telegramBotClient, hook);
+                    await message.Reply(_telegramBotClient, hook);
                     break;
                 default:
                     break;
             }
-            throw new NotImplementedException();
-        }
-
-        public string Match(bool a,bool b)
-        {
-            return (a, b) switch
-            {
-                (true, true) => "aa",
-
-                _ => "zz"
-            };
         }
     }
 }
