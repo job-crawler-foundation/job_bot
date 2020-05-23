@@ -9,3 +9,4 @@
 /src/JobBot/.vs/JobBot
 /src/JobBot/JobBot.Business/bin/Debug/netcoreapp3.1
 /src/JobBot/JobBot.Business/obj
+/src/JobBot/JobBot.Data/obj
