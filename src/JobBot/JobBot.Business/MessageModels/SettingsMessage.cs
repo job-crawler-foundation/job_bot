@@ -20,7 +20,6 @@ namespace JobBot.Business.MessageModels
                 {
                     InlineKeyboardButton.WithCallbackData("Preferences"),
                     InlineKeyboardButton.WithCallbackData("Notifications"),
-                    InlineKeyboardButton.WithCallbackData("On/Off")
                 },
                 new[]
                 {

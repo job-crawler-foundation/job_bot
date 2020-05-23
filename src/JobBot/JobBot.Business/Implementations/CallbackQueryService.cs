@@ -1,5 +1,5 @@
 ﻿using JobBot.Business.Abstractions;
-using JobBot.Business.MessageModels;
+using JobBot.Business.Helpers;
 using Telegram.Bot.Types;
 
 namespace JobBot.Business.Implementations
@@ -8,16 +8,7 @@ namespace JobBot.Business.Implementations
     {
         public IMessage Handle(Update hook)
         {
-            switch (hook.CallbackQuery.Data)
-            {
-                case "Settings":
-                    return new SettingsMessage();
-                case "Home":
-                    return new InitialMessage();
-                case "About":
-                    return new AboutMessage();
-            }
-            return null;
+            return RouteDispatcher.GetMessageInstance(hook.CallbackQuery.Data);
         }
     }
 }
