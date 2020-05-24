@@ -8,4 +8,8 @@
     <PackageReference Include="Telegram.Bot" Version="15.5.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\JobBot.Data\JobBot.Data.csproj" />
+  </ItemGroup>
+
 </Project>

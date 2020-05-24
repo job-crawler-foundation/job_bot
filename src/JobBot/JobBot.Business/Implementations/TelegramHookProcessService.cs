@@ -1,4 +1,5 @@
 ﻿using JobBot.Business.Abstractions;
+using JobBot.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,9 +14,14 @@ namespace JobBot.Business.Implementations
     {
         private readonly TelegramBotClient _telegramBotClient;
 
-        public TelegramHookProcessService(TelegramBotClient telegramBotClient)
+        private readonly JobBotDbContext _ctx;
+
+        public TelegramHookProcessService(TelegramBotClient telegramBotClient,
+            JobBotDbContext ctx)
         {
             _telegramBotClient = telegramBotClient;
+
+            _ctx = ctx;
         }
 
         public async Task Process(Update hook)
