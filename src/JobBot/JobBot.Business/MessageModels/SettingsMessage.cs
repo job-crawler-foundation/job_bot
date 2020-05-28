@@ -12,7 +12,7 @@ namespace JobBot.Business.MessageModels
         public async Task Reply(TelegramBotClient client,Update hook)
         {
             var inlineKeyboard = new InlineKeyboardMarkup(new[]
-           {
+            {
                 new []
                 {
                     InlineKeyboardButton.WithCallbackData("Preferences"),
