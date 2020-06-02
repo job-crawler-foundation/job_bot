@@ -1,14 +1,13 @@
 ﻿using JobBot.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace JobBot.Data
 {
     public class JobBotDbContext : DbContext
     {
         public DbSet<Job> Jobs { get; set; }
+
+        public DbSet<User> Users { get; set; }
 
         /// <summary>
         /// Default constructor
