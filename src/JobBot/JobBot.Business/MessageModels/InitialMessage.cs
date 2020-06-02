@@ -1,6 +1,7 @@
 ﻿using JobBot.Business.Abstractions;
 using JobBot.Business.Consts;
 using JobBot.Business.Helpers;
+using JobBot.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +14,7 @@ namespace JobBot.Business.MessageModels
 {
     public class InitialMessage : IMessage
     {
-        public async Task Reply(TelegramBotClient client, Update hook)
+        public async Task Reply(TelegramBotClient client, Update hook, JobBotDbContext ctx = null)
         {
             var inlineKeyboard = new InlineKeyboardMarkup(new[]
             {

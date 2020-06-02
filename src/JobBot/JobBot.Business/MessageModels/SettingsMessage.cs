@@ -4,12 +4,13 @@ using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using JobBot.Business.Helpers;
+using JobBot.Data;
 
 namespace JobBot.Business.MessageModels
 {
     public class SettingsMessage : IMessage
     {
-        public async Task Reply(TelegramBotClient client,Update hook)
+        public async Task Reply(TelegramBotClient client,Update hook, JobBotDbContext ctx = null)
         {
             var inlineKeyboard = new InlineKeyboardMarkup(new[]
             {
@@ -23,7 +24,7 @@ namespace JobBot.Business.MessageModels
                        InlineKeyboardButton.WithCallbackData("Home"),
                 }
             }); ;
-            await client.SendTextMessageAsync(hook.ChatId(),"its settings",replyMarkup: inlineKeyboard);
+            await client.SendTextMessageAsync(hook.ChatId(),"its settings", replyMarkup: inlineKeyboard);
         }
     }
 }

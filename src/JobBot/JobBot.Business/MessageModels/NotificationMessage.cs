@@ -1,5 +1,6 @@
 ﻿using JobBot.Business.Abstractions;
 using JobBot.Business.Helpers;
+using JobBot.Data;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -9,7 +10,7 @@ namespace JobBot.Business.MessageModels
 {
     public class NotificationMessage : IMessage
     {
-        public async Task Reply(TelegramBotClient client, Update hook)
+        public async Task Reply(TelegramBotClient client, Update hook, JobBotDbContext ctx = null)
         {
             var inlineKeyboard = new InlineKeyboardMarkup(new[]
             {

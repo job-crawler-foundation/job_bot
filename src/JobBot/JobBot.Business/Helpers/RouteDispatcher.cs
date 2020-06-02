@@ -18,7 +18,7 @@ namespace JobBot.Business.Helpers
                     return new InitialMessage();
                 case "About":
                     return new AboutMessage();
-                case "Notification":
+                case "Notifications":
                     return new NotificationMessage();
                 case "Preferences":
                     return new PreferencesMessage();

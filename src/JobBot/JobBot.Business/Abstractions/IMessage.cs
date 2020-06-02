@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobBot.Data;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,6 @@ namespace JobBot.Business.Abstractions
 {
     public interface IMessage
     {
-        Task Reply(TelegramBotClient client, Update hook);
+        Task Reply(TelegramBotClient client, Update hook, JobBotDbContext ctx = null);
     }
 }
