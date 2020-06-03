@@ -30,7 +30,7 @@ namespace JobBot.Business.Implementations
             {
                 case UpdateType.Message:
                     var initMessage = new InitialMessageService().Handle(hook);
-                    await initMessage.Reply(_telegramBotClient, hook);
+                    await initMessage.Reply(_telegramBotClient, hook, _ctx);
                     break;
                 case UpdateType.CallbackQuery:
                     var message = new CallbackQueryService().Handle(hook);

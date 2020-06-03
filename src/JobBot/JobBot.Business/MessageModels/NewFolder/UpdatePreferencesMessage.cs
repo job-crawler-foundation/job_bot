@@ -1,6 +1,7 @@
 ﻿using JobBot.Business.Abstractions;
 using JobBot.Business.Helpers;
 using JobBot.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,7 +17,14 @@ namespace JobBot.Business.MessageModels.InlineCommands
 
         public async Task Reply(TelegramBotClient client, Update hook, JobBotDbContext ctx = null)
         {
-            await client.SendTextMessageAsync(hook.ChatId(), "update message fetched");
+            var user = await ctx.Users.FirstOrDefaultAsync(x => x.ChatId == hook.ChatId());
+
+            var preferences = hook.Message.Text.TrimStart(UpdatePreferencesCommand.ToCharArray()).Trim();
+            user.Preferences = preferences;
+
+            ctx.Users.Update(user);
+            await ctx.SaveChangesAsync();
+            await client.SendTextMessageAsync(hook.ChatId(), "preferences changed to " + preferences);
         }
     }
 }

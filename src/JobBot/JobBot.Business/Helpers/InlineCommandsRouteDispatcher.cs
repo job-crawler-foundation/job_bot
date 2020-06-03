@@ -8,13 +8,9 @@ namespace JobBot.Business.Helpers
     {
         public static IMessage GetMessageInstance(string route)
         {
-            switch (route)
-            {
-                case "/update":
-                    return new UpdatePreferencesMessage();
-                default:
-                    return new InitialMessage();
-            }
+            if (route.StartsWith("/update"))
+                return new UpdatePreferencesMessage();
+            return new InitialMessage();
         }
     }
 }
