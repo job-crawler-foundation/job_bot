@@ -2,15 +2,17 @@
 using JobBot.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace JobBot.Data.Migrations
 {
     [DbContext(typeof(JobBotDbContext))]
-    partial class JobBotDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200603172858_User-Add-Fields")]
+    partial class UserAddFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

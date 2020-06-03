@@ -11,5 +11,7 @@ namespace JobBot.Data.Entities
         public long ChatId { get; set; }
 
         public bool SearchEnabled { get; set; }
+
+        public string Preferences { get; set; }
     }
 }
