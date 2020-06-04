@@ -1,8 +1,5 @@
 ﻿using JobBot.Business.Abstractions;
 using JobBot.Business.MessageModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace JobBot.Business.Helpers
 {

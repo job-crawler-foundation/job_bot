@@ -1,11 +1,6 @@
 ﻿using JobBot.Business.Abstractions;
-using JobBot.Business.Helpers;
-using JobBot.Data;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Linq;
 using System.Threading.Tasks;
-using Telegram.Bot;
 using Telegram.Bot.Types;
 
 namespace JobBot.API.Controllers

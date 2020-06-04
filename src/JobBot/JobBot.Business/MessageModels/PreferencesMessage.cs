@@ -1,7 +1,6 @@
 ﻿using JobBot.Business.Abstractions;
 using JobBot.Business.Helpers;
 using JobBot.Data;
-using System;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
