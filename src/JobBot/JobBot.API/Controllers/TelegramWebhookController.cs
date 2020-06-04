@@ -16,30 +16,21 @@ namespace JobBot.API.Controllers
     {
         private readonly ITelegramHookProcessService _telegramResponseService;
 
-        private readonly JobBotDbContext _dbContext;
+        private readonly IRegistrationService _registrationService;
 
-        public TelegramWebhookController(ITelegramHookProcessService telegramResponseService, JobBotDbContext context)
+        public TelegramWebhookController(
+            ITelegramHookProcessService telegramResponseService,
+            IRegistrationService registrationService)
         {
             _telegramResponseService = telegramResponseService;
 
-            _dbContext = context;
+            _registrationService = registrationService;
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Update hook)
         {
-            var userExist = _dbContext.Users.FirstOrDefault(x => x.ChatId == hook.ChatId());
-
-            if (userExist == null)
-            {
-                var user = new JobBot.Data.Entities.User()
-                {
-                    ChatId = hook.ChatId(),
-                    SearchEnabled = true
-                };
-                _dbContext.Users.Add(user);
-                await _dbContext.SaveChangesAsync();
-            }
+            await _registrationService.EnsureRegistered(hook);
 
             await _telegramResponseService.Process(hook);
 
