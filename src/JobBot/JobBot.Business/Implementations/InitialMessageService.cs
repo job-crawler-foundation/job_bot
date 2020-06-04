@@ -1,7 +1,6 @@
 ﻿using JobBot.Business.Abstractions;
 using JobBot.Business.Helpers;
 using JobBot.Business.MessageModels;
-using System;
 using Telegram.Bot.Types;
 
 namespace JobBot.Business.Implementations
@@ -13,7 +12,7 @@ namespace JobBot.Business.Implementations
             if (hook.Message.Text.StartsWith("/"))
             {
                 return InlineCommandsRouteDispatcher.GetMessageInstance(hook.Message.Text);
-            }// <-- command
+            }
             return new InitialMessage();
         }
     }

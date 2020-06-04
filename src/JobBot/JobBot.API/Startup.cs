@@ -43,6 +43,8 @@ namespace JobBot.API
 
             services.AddTransient<ITelegramHookProcessService, TelegramHookProcessService>();
 
+            services.AddTransient<IRegistrationService, RegistrationService>();
+
             services.AddControllers().AddNewtonsoftJson();
         }
 
