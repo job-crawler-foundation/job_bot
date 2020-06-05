@@ -10,6 +10,13 @@ namespace JobBot.Business.Helpers
         {
             if (route.StartsWith("/update"))
                 return new UpdatePreferencesMessage();
+
+            if (route.StartsWith("/disable"))
+                return new DisableSearchMessage();
+
+            if (route.StartsWith("/enable"))
+                return new EnableSearchMessage();
+
             return new InitialMessage();
         }
     }
