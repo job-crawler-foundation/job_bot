@@ -1,4 +1,5 @@
 using System;
+using JobBot.API.HostedServices;
 using JobBot.Business.Abstractions;
 using JobBot.Business.Implementations;
 using JobBot.Data;
@@ -31,7 +32,7 @@ namespace JobBot.API
             #else
                 options.UseNpgsql("test");
             #endif
-            });
+            }, contextLifetime: ServiceLifetime.Transient, optionsLifetime: ServiceLifetime.Transient);
 
             services.AddSingleton(
                 new TelegramBotClient(Environment.GetEnvironmentVariable("TelegramToken")));
@@ -39,6 +40,8 @@ namespace JobBot.API
             services.AddTransient<ITelegramHookProcessService, TelegramHookProcessService>();
 
             services.AddTransient<IRegistrationService, RegistrationService>();
+
+            services.AddHostedService<JobHostedService>();
 
             services.AddControllers().AddNewtonsoftJson();
         }
